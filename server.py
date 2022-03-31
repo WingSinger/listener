@@ -21,10 +21,11 @@ class Server():
         prompt = self.clt.recv(1024).decode()
         while True:
             cmd = input(prompt).encode()
-            self.clt.send(cmd)
-            size = int (self.clt.recv(1024))
-            opt = self.clt.recv(1024 * size)
-            print(opt.decode())
+            if cmd:
+                self.clt.send(cmd)
+                size = int (self.clt.recv(1024))
+                opt = self.clt.recv(1024 * size)
+                print(opt.decode())
 
     def Start():
         try:
